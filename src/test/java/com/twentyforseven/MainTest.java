@@ -1,11 +1,12 @@
 package com.twentyforseven;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.twentyforseven.model.classes.Board;
 import com.twentyforseven.model.factory.ITileFactory;
 import com.twentyforseven.model.factory.TileFactoryImpl;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 
@@ -35,4 +36,6 @@ public class MainTest {
         assertEquals(10, board.getWidth());
         assertEquals(10, board.getHeight());
     }
+
+
 }
