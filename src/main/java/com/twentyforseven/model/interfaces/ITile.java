@@ -2,10 +2,10 @@ package com.twentyforseven.model.interfaces;
 
 import java.awt.Color;
 
+import com.twentyforseven.model.classes.Player;
 import com.twentyforseven.model.enumerate.TileType;
 
 public interface ITile {
-
     TileType getType();
 
     Color getColor();
@@ -18,4 +18,5 @@ public interface ITile {
 
     void setName(String name);
 
+    void interact(Player player);
 }
