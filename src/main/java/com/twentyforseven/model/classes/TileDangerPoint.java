@@ -1,16 +1,13 @@
 package com.twentyforseven.model.classes;
 
-import com.twentyforseven.model.behaviors.TileDangerBehavior;
+import java.awt.Point;
+
+import com.twentyforseven.model.behaviors.TileDangerPBehavior;
 import com.twentyforseven.model.enumerate.TileType;
 
 public class TileDangerPoint extends Tile {
 
-    public TileDangerPoint() {
-        super(TileType.DANGERPOINT, new TileDangerBehavior());
+    public TileDangerPoint(String name, Point position) {
+        super(TileType.DANGERPOINT, name, new TileDangerPBehavior(), position);
     }
-
-    public TileDangerPoint(String name) {
-        super(TileType.DANGERPOINT, name, new TileDangerBehavior());
-    }
-
 }

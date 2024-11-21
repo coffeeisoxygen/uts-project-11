@@ -1,6 +1,7 @@
 package com.twentyforseven.model.interfaces;
 
 import java.awt.Color;
+import java.awt.Point;
 
 import com.twentyforseven.model.classes.Player;
 import com.twentyforseven.model.enumerate.TileType;
@@ -17,6 +18,10 @@ public interface ITile {
     void setType(TileType type);
 
     void setName(String name);
+
+    Point getPosition();
+
+    void setPosition(Point position);
 
     void interact(Player player);
 }

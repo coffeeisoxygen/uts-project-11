@@ -1,5 +1,6 @@
 package com.twentyforseven.model.factory;
 
+import java.awt.Point;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -16,22 +17,22 @@ public class TileFactoryImpl implements ITileFactory {
     private static final Map<String, Tile> tileMap = new ConcurrentHashMap<>();
 
     @Override
-    public ITile createTile(TileType type, String name) {
-        String key = type + ":" + name;
+    public ITile createTile(TileType type, String name, Point position) {
+        String key = type + ":" + name + ":" + position;
         return tileMap.computeIfAbsent(key, _ -> {
             return switch (type) {
-                case NORMALPOINT -> new TileNormalPoint(name);
-                case CHECKPOINT -> new TileCheckPoint(name);
-                case DANGERPOINT -> new TileDangerPoint(name);
-                case STARTPOINT -> new TileStartPoint(name);
-                case FINISHPOINT -> new TileFinishPoint(name);
-                default -> new TileNormalPoint(name);
+                case NORMALPOINT -> new TileNormalPoint(name, position);
+                case CHECKPOINT -> new TileCheckPoint(name, position);
+                case DANGERPOINT -> new TileDangerPoint(name, position);
+                case STARTPOINT -> new TileStartPoint(name, position);
+                case FINISHPOINT -> new TileFinishPoint(name, position);
+                default -> new TileNormalPoint(name, position);
             };
         });
     }
 
     @Override
-    public ITile createTile(TileType type) {
-        return createTile(type, type.toString());
+    public ITile createTile(TileType type, Point position) {
+        return createTile(type, type.toString(), position);
     }
 }

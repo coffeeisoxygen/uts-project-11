@@ -1,15 +1,13 @@
 package com.twentyforseven.model.classes;
 
-import com.twentyforseven.model.behaviors.TileNormalBehavior;
+import java.awt.Point;
+
+import com.twentyforseven.model.behaviors.TileNormalPBehavior;
 import com.twentyforseven.model.enumerate.TileType;
 
 public class TileNormalPoint extends Tile {
 
-    public TileNormalPoint() {
-        super(TileType.NORMALPOINT, new TileNormalBehavior());
-    }
-
-    public TileNormalPoint(String name) {
-        super(TileType.NORMALPOINT, name, new TileNormalBehavior());
+    public TileNormalPoint(String name, Point position) {
+        super(TileType.NORMALPOINT, name, new TileNormalPBehavior(), position);
     }
 }

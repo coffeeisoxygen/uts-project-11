@@ -1,15 +1,13 @@
 package com.twentyforseven.model.classes;
 
-import com.twentyforseven.model.behaviors.TileStartBehavior;
+import java.awt.Point;
+
+import com.twentyforseven.model.behaviors.TileStartPBehavior;
 import com.twentyforseven.model.enumerate.TileType;
 
 public class TileStartPoint extends Tile {
-    public TileStartPoint() {
-        super(TileType.STARTPOINT, new TileStartBehavior());
-    }
 
-    public TileStartPoint(String name) {
-        super(TileType.STARTPOINT, name, new TileStartBehavior());
+    public TileStartPoint(String name, Point position) {
+        super(TileType.STARTPOINT, name, new TileStartPBehavior(), position);
     }
-
 }
