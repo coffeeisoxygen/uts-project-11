@@ -8,6 +8,7 @@ public class Main {
     public static void main(String[] args) {
         ITileFactory tileFactory = new TileFactoryImpl();
         Board board = new Board(10, 10, tileFactory);
+        board.printBoard();
 
         // Example: Get a tile from the board
         System.out.println(board.getTile(0, 0));

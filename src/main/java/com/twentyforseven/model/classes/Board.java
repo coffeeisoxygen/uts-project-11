@@ -24,6 +24,15 @@ public class Board implements IBoard {
         }
     }
 
+    public void printBoard() {
+        for (ITile[] tile : tiles) {
+            for (ITile tile1 : tile) {
+                System.out.print(tile1.getName() + " ");
+            }
+            System.out.println();
+        }
+    }
+
     @Override
     public ITile getTile(int row, int col) {
         return tiles[row][col];
