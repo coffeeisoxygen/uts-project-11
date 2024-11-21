@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.twentyforseven.model.classes.TileTest" time="0.043" tests="7" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.twentyforseven.model.classes.TileTest" time="0.562" tests="8" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="23"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -16,7 +16,7 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="F:\packages\java\OpenJDK-23\bin"/>
-    <property name="sun.java.command" value="C:\Users\YOGA\AppData\Local\Temp\surefire12211533493011396216\surefirebooter16541602177546089044.jar C:\Users\YOGA\AppData\Local\Temp\surefire12211533493011396216 2024-11-21T22-54-15_075-jvmRun1 surefire9504133971666565963tmp surefire_05412808868507121225tmp"/>
+    <property name="sun.java.command" value="C:\Users\YOGA\AppData\Local\Temp\surefire17671990175382183743\surefirebooter527075463488542177.jar C:\Users\YOGA\AppData\Local\Temp\surefire17671990175382183743 2024-11-22T00-01-29_374-jvmRun1 surefire588682244825393685tmp surefire_012584606331743439327tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="test" value="com.twentyforseven.model.classes.TileTest"/>
     <property name="surefire.test.class.path" value="F:\uts_project11\arraygame\target\test-classes;F:\uts_project11\arraygame\target\classes;C:\Users\YOGA\.m2\repository\org\junit\jupiter\junit-jupiter\5.7.0\junit-jupiter-5.7.0.jar;C:\Users\YOGA\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.7.0\junit-jupiter-api-5.7.0.jar;C:\Users\YOGA\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\YOGA\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\YOGA\.m2\repository\org\junit\platform\junit-platform-commons\1.7.0\junit-platform-commons-1.7.0.jar;C:\Users\YOGA\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.7.0\junit-jupiter-params-5.7.0.jar;C:\Users\YOGA\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.7.0\junit-jupiter-engine-5.7.0.jar;C:\Users\YOGA\.m2\repository\org\junit\platform\junit-platform-engine\1.7.0\junit-platform-engine-1.7.0.jar;C:\Users\YOGA\.m2\repository\org\mockito\mockito-core\3.9.0\mockito-core-3.9.0.jar;C:\Users\YOGA\.m2\repository\net\bytebuddy\byte-buddy\1.10.20\byte-buddy-1.10.20.jar;C:\Users\YOGA\.m2\repository\net\bytebuddy\byte-buddy-agent\1.10.20\byte-buddy-agent-1.10.20.jar;C:\Users\YOGA\.m2\repository\org\objenesis\objenesis\3.2\objenesis-3.2.jar;C:\Users\YOGA\.m2\repository\org\assertj\assertj-core\3.19.0\assertj-core-3.19.0.jar;"/>
@@ -32,7 +32,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\YOGA\AppData\Local\Temp\surefire12211533493011396216\surefirebooter16541602177546089044.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\YOGA\AppData\Local\Temp\surefire17671990175382183743\surefirebooter527075463488542177.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="23+37-2369"/>
@@ -61,11 +61,12 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="testTileName" classname="com.twentyforseven.model.classes.TileTest" time="0.023"/>
-  <testcase name="testTileType" classname="com.twentyforseven.model.classes.TileTest" time="0.001"/>
-  <testcase name="testTileColor" classname="com.twentyforseven.model.classes.TileTest" time="0.001"/>
-  <testcase name="testGetDefaultColor" classname="com.twentyforseven.model.classes.TileTest" time="0.001"/>
-  <testcase name="testSetName" classname="com.twentyforseven.model.classes.TileTest" time="0.002"/>
-  <testcase name="testSetType" classname="com.twentyforseven.model.classes.TileTest" time="0"/>
-  <testcase name="testSetColor" classname="com.twentyforseven.model.classes.TileTest" time="0.001"/>
+  <testcase name="testTileInitialization" classname="com.twentyforseven.model.classes.TileTest" time="0.496"/>
+  <testcase name="testToString" classname="com.twentyforseven.model.classes.TileTest" time="0.016"/>
+  <testcase name="testDefaultColor" classname="com.twentyforseven.model.classes.TileTest" time="0.001"/>
+  <testcase name="testInteract" classname="com.twentyforseven.model.classes.TileTest" time="0.029"/>
+  <testcase name="testEqualsAndHashCode" classname="com.twentyforseven.model.classes.TileTest" time="0.001"/>
+  <testcase name="testSetName" classname="com.twentyforseven.model.classes.TileTest" time="0.001"/>
+  <testcase name="testSetType" classname="com.twentyforseven.model.classes.TileTest" time="0.002"/>
+  <testcase name="testSetColor" classname="com.twentyforseven.model.classes.TileTest" time="0"/>
 </testsuite>

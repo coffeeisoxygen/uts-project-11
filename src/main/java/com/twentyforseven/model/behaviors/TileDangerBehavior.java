@@ -4,11 +4,11 @@ import java.util.Objects;
 
 import com.twentyforseven.model.classes.Player;
 
-public class TileNormalBehavior implements ITileBehavior {
+public class TileDangerBehavior implements ITileBehavior {
     @Override
     public void interact(Player player) {
         // TODO: Implement this method
-        System.out.println("TileNormalBehavior.interact(Player player) called");
+        System.out.println("TileDangerPoint.interact(Player player) called");
     }
 
     @Override
