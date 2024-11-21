@@ -4,9 +4,10 @@ import java.awt.Point;
 
 import com.twentyforseven.model.enumerate.TileType;
 import com.twentyforseven.model.factory.ITileFactory;
+import com.twentyforseven.model.interfaces.IBoard;
 import com.twentyforseven.model.interfaces.ITile;
 
-public class Board {
+public class Board implements IBoard {
     private ITile[][] tiles;
     private ITileFactory tileFactory;
 
@@ -25,26 +26,31 @@ public class Board {
         }
     }
 
+    @Override
     public ITile getTile(int row, int col) {
         return tiles[row][col];
     }
 
+    @Override
     public void setTile(int row, int col, ITile tile) {
         tiles[row][col] = tile;
     }
 
+    @Override
     public Integer getWidth() {
         return tiles[0].length;
     }
 
+    @Override
     public Integer getHeight() {
         return tiles.length;
     }
 
+    @Override
     public void printBoard() {
-        for (ITile[] tile : tiles) {
-            for (ITile tile1 : tile) {
-                System.out.print(tile1.getType().toString().charAt(0) + " ");
+        for (ITile[] row : tiles) {
+            for (ITile tile : row) {
+                System.out.print(tile.getType().toString().charAt(0) + " ");
             }
             System.out.println();
         }

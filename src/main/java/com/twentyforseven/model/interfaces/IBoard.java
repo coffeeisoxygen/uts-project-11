@@ -6,4 +6,9 @@ public interface IBoard {
 
     void setTile(int row, int col, ITile tile);
 
+    Integer getWidth();
+
+    Integer getHeight();
+
+    void printBoard();
 }
