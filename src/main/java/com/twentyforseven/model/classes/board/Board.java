@@ -3,6 +3,8 @@ package com.twentyforseven.model.classes.board;
 import java.awt.Point;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.twentyforseven.model.enumerate.TileType;
 import com.twentyforseven.model.factory.ITileFactory;
@@ -10,6 +12,7 @@ import com.twentyforseven.model.interfaces.IBoard;
 import com.twentyforseven.model.interfaces.ITile;
 
 public class Board implements IBoard {
+    private static final Logger logger = Logger.getLogger(Board.class.getName());
     private ITile[][] tiles;
     private ITileFactory tileFactory;
     private PropertyChangeSupport support;
@@ -22,10 +25,15 @@ public class Board implements IBoard {
     }
 
     private void initializeBoard() {
-        for (int i = 0; i < tiles.length; i++) {
-            for (int j = 0; j < tiles[i].length; j++) {
-                tiles[i][j] = tileFactory.createTile(TileType.NORMALPOINT, new Point(i, j));
+        try {
+            for (int i = 0; i < tiles.length; i++) {
+                for (int j = 0; j < tiles[i].length; j++) {
+                    tiles[i][j] = tileFactory.createTile(TileType.NORMALPOINT, new Point(i, j));
+                }
             }
+            logger.info("Board initialized successfully.");
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Failed to initialize the board: {0}", e.getMessage());
         }
     }
 
@@ -39,6 +47,7 @@ public class Board implements IBoard {
         ITile oldTile = tiles[row][col];
         tiles[row][col] = tile;
         support.firePropertyChange("tile", oldTile, tile);
+        logger.log(Level.INFO, "Tile set at position ({0}, {1})", new Object[]{row, col});
     }
 
     @Override

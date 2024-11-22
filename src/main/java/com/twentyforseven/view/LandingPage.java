@@ -1,12 +1,20 @@
 package com.twentyforseven.view;
 
-import com.twentyforseven.model.interfaces.IBoard;
-import com.twentyforseven.model.interfaces.ITile;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
+import com.twentyforseven.model.classes.board.Board;
+import com.twentyforseven.model.factory.ITileFactory;
+import com.twentyforseven.model.factory.TileFactoryImpl;
+import com.twentyforseven.model.interfaces.IBoard;
+import com.twentyforseven.model.interfaces.ITile;
 
 public class LandingPage extends JFrame implements PropertyChangeListener {
     private IBoard board;
@@ -14,8 +22,12 @@ public class LandingPage extends JFrame implements PropertyChangeListener {
 
     public LandingPage(IBoard board) {
         this.board = board;
-        this.board.addPropertyChangeListener(this);
         initializeUI();
+        registerListeners();
+    }
+
+    private void registerListeners() {
+        this.board.addPropertyChangeListener(this);
     }
 
     private void initializeUI() {
