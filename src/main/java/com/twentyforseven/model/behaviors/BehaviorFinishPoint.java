@@ -15,7 +15,7 @@ public class BehaviorFinishPoint implements ITileBehavior {
     public boolean equals(Object o) {
         if (this == o)
             return true;
-        // All instances of TileNormalBehavior are considered equal
+        // All instances of BehaviorFinishPoint are considered equal
         return o != null && getClass() == o.getClass();
     }
 

@@ -44,10 +44,7 @@ public class Player implements IPlayer, PropertyChangeObservable {
 
     @Override
     public void setName(String name) {
-        String oldName = this.name;
         this.name = name;
-        pcs.firePropertyChange("name", oldName, name);
-        logger.log(Level.INFO, "Name changed from {0} to {1}", new Object[] { oldName, name });
     }
 
     @Override
@@ -57,10 +54,7 @@ public class Player implements IPlayer, PropertyChangeObservable {
 
     @Override
     public void setScore(int score) {
-        int oldScore = this.score;
         this.score = score;
-        pcs.firePropertyChange("score", oldScore, score);
-        logger.log(Level.INFO, "Score changed from {0} to {1}", new Object[] { oldScore, score });
     }
 
     @Override
@@ -70,10 +64,7 @@ public class Player implements IPlayer, PropertyChangeObservable {
 
     @Override
     public void setPosition(Point position) {
-        Point oldPosition = this.position;
         this.position = position;
-        pcs.firePropertyChange("position", oldPosition, position);
-        logger.log(Level.INFO, "Position changed from {0} to {1}", new Object[] { oldPosition, position });
     }
 
     @Override
@@ -85,19 +76,28 @@ public class Player implements IPlayer, PropertyChangeObservable {
     }
 
     @Override
-    public void die() {
+    public void die(String reason) {
         boolean oldIsAlive = this.isAlive;
         isAlive = false;
         pcs.firePropertyChange("isAlive", oldIsAlive, isAlive);
-        logger.info("Player has died.");
+        pcs.firePropertyChange("deathReason", null, reason);
+        logger.log(Level.INFO, "Player has died: {0}", reason);
     }
 
     @Override
-    public void addEnergy(int amount) {
+    public void increaseEnergy(int amount) {
         int oldEnergy = this.energy;
         energy += amount;
         pcs.firePropertyChange("energy", oldEnergy, energy);
         logger.log(Level.INFO, "Energy increased by {0}. Current energy: {1}", new Object[] { amount, energy });
+    }
+
+    @Override
+    public void decreaseEnergy(int amount) {
+        int oldEnergy = this.energy;
+        energy -= amount;
+        pcs.firePropertyChange("energy", oldEnergy, energy);
+        logger.log(Level.INFO, "Energy decreased by {0}. Current energy: {1}", new Object[] { amount, energy });
     }
 
     @Override
@@ -110,22 +110,16 @@ public class Player implements IPlayer, PropertyChangeObservable {
 
     @Override
     public boolean isAlive() {
-        pcs.firePropertyChange("isAlive", isAlive, isAlive);
-        logger.info("Checking if player is alive.");
         return isAlive;
     }
 
     @Override
     public boolean hasWon() {
-        pcs.firePropertyChange("hasWon", hasWon, hasWon);
-        logger.info("Checking if player has won.");
         return hasWon;
     }
 
     @Override
     public int getEnergy() {
-        pcs.firePropertyChange("energy", energy, energy);
-        logger.info("Getting player's energy.");
         return energy;
     }
 
@@ -141,6 +135,9 @@ public class Player implements IPlayer, PropertyChangeObservable {
                 "name='" + name + '\'' +
                 ", score=" + score +
                 ", position=" + position +
+                ", energy=" + energy +
+                ", isAlive=" + isAlive +
+                ", hasWon=" + hasWon +
                 '}';
     }
 }

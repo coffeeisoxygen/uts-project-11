@@ -8,7 +8,7 @@ public class BehaviorCheckponint implements ITileBehavior {
     @Override
     public void interact(Player player) {
         player.stay();
-        player.addEnergy(10); // Add energy when player stays on the checkpoint
+        player.increaseEnergy(10); // Add energy when player stays on the checkpoint
         System.out.println("TileCheckponint.interact(Player player) called");
     }
 

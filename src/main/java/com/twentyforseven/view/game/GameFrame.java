@@ -6,10 +6,10 @@ import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import com.twentyforseven.model.classes.tile.ITile;
-import com.twentyforseven.model.commands.CommandHandler;
 import com.twentyforseven.model.services.GameManager;
 import com.twentyforseven.util.GameContext;
+import com.twentyforseven.model.classes.tile.ITile;
+import com.twentyforseven.model.commands.CommandHandler;
 
 public class GameFrame extends JFrame implements PropertyChangeListener {
     private GameManager gameManager;
@@ -46,6 +46,9 @@ public class GameFrame extends JFrame implements PropertyChangeListener {
         add(inputPanel, BorderLayout.NORTH);
         add(new JScrollPane(boardDisplay), BorderLayout.CENTER);
 
+        // Add property change listeners
+        addPropertyChangeListeners();
+
         // Initial board display
         updateBoardDisplay();
     }
@@ -56,14 +59,9 @@ public class GameFrame extends JFrame implements PropertyChangeListener {
         ((CommandHandler) gameManager.getCommandHandler()).addPropertyChangeListener(this::propertyChange);
     }
 
-private void updateBoardDisplay() {
-    SwingUtilities.invokeLater(() -> {
+    private void updateBoardDisplay() {
         StringBuilder sb = new StringBuilder();
         Point playerPosition = gameManager.getPlayer().getPosition();
-
-        if (playerPosition == null) {
-            throw new IllegalStateException("Player position is null");
-        }
 
         for (int i = 0; i < gameManager.getBoard().getHeight(); i++) {
             for (int j = 0; j < gameManager.getBoard().getWidth(); j++) {
@@ -80,13 +78,16 @@ private void updateBoardDisplay() {
             sb.append("\n");
         }
         boardDisplay.setText(sb.toString());
-    });
-}
+    }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if ("invalidMove".equals(evt.getPropertyName())) {
             JOptionPane.showMessageDialog(this, "Invalid move! Player moved out of board boundaries.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if ("deathReason".equals(evt.getPropertyName())) {
+            JOptionPane.showMessageDialog(this, "Player has died: " + evt.getNewValue(), "Game Over", JOptionPane.ERROR_MESSAGE);
+        } else if ("hasWon".equals(evt.getPropertyName()) && (boolean) evt.getNewValue()) {
+            JOptionPane.showMessageDialog(this, "Player has won the game!", "Congratulations", JOptionPane.INFORMATION_MESSAGE);
         }
         updateBoardDisplay();
     }
@@ -96,7 +97,6 @@ private void updateBoardDisplay() {
             @Override
             public void run() {
                 GameFrame gameFrame = new GameFrame();
-                gameFrame.addPropertyChangeListeners();
                 gameFrame.setVisible(true);
             }
         });

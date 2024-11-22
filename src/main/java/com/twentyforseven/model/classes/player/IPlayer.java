@@ -28,9 +28,11 @@ public interface IPlayer {
 
     void move(int deltaX, int deltaY);
 
-    void die();
+    void die(String reason);
 
-    void addEnergy(int amount);
+    void increaseEnergy(int amount);
+
+    void decreaseEnergy(int amount);
 
     void win();
 

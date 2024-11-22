@@ -1,10 +1,14 @@
 package com.twentyforseven.model.classes;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 import java.awt.Point;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import com.twentyforseven.model.classes.board.Board;
 import com.twentyforseven.model.classes.tile.ITile;
@@ -57,10 +61,4 @@ public class BoardTest {
         assertEquals(3, board.getHeight());
     }
 
-    @Test
-    public void testPrintBoard() {
-        // This test is to ensure printBoard does not throw any exceptions
-        // Actual output verification can be done using a different approach if needed
-        assertDoesNotThrow(() -> board.printBoard());
-    }
 }

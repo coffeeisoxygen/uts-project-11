@@ -58,7 +58,7 @@ public class PlayerManager extends AbstractMoveable implements IPlayerManager {
 
     @Override
     public void playerDie() {
-        player.die();
+        player.die(String.format("Died: %s", "Fall From Cliff"));
     }
 
     @Override
