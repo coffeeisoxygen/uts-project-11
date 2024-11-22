@@ -16,12 +16,10 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
-import com.twentyforseven.model.algorithms.MazeGenerator;
-import com.twentyforseven.model.classes.board.Board;
-import com.twentyforseven.model.factory.ITileFactory;
-import com.twentyforseven.model.factory.TileFactoryImpl;
+import com.twentyforseven.model.algorithms.IMapCreationAlgorithm;
 import com.twentyforseven.model.interfaces.IBoard;
 import com.twentyforseven.model.interfaces.ITile;
+import com.twentyforseven.util.GameContext;
 
 public class GameFrame extends JFrame implements PropertyChangeListener {
     private static final int FRAME_WIDTH = 1000;
@@ -33,12 +31,11 @@ public class GameFrame extends JFrame implements PropertyChangeListener {
 
     private IBoard board;
     private JPanel boardPanel;
-    private MazeGenerator MazeGenerator;
+    private IMapCreationAlgorithm mapCreationAlgorithm;
 
-    public GameFrame(IBoard board) {
+    public GameFrame(IBoard board, IMapCreationAlgorithm mapCreationAlgorithm) {
         this.board = board;
-        ITileFactory tileFactory = new TileFactoryImpl();
-        this.MazeGenerator = new MazeGenerator(tileFactory);
+        this.mapCreationAlgorithm = mapCreationAlgorithm;
         initializeUI();
         registerListeners();
         setVisible(true);
@@ -74,7 +71,7 @@ public class GameFrame extends JFrame implements PropertyChangeListener {
         styleControlButton(startGameButton);
 
         randomizeButton.addActionListener(e -> {
-            MazeGenerator.constructMap(board);
+            mapCreationAlgorithm.constructMap(board);
             updateBoard();
         });
 
@@ -128,10 +125,9 @@ public class GameFrame extends JFrame implements PropertyChangeListener {
     }
 
     public static void main(String[] args) {
-        ITileFactory tileFactory = new TileFactoryImpl();
-        IBoard board = new Board(6, 12, tileFactory);
+        GameContext context = GameContext.getInstance();
         SwingUtilities.invokeLater(() -> {
-            GameFrame gameFrame = new GameFrame(board);
+            GameFrame gameFrame = new GameFrame(context.getBoard(), context.getMazeGenerator());
             gameFrame.setVisible(true);
         });
     }

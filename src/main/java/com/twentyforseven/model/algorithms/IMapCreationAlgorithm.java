@@ -2,6 +2,6 @@ package com.twentyforseven.model.algorithms;
 
 import com.twentyforseven.model.interfaces.IBoard;
 
-public interface MapCreationAlgorithm {
+public interface IMapCreationAlgorithm {
     void constructMap(IBoard board);
 }

@@ -12,10 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import com.twentyforseven.model.classes.board.Board;
-import com.twentyforseven.model.factory.ITileFactory;
-import com.twentyforseven.model.factory.TileFactoryImpl;
-import com.twentyforseven.model.interfaces.IBoard;
+import com.twentyforseven.util.GameContext;
 import com.twentyforseven.view.game.GameFrame;
 
 public class LandingPage extends JFrame {
@@ -50,18 +47,9 @@ public class LandingPage extends JFrame {
     }
 
     private void startHikingGame() {
-        try {
-            initializeGame();
-        } catch (Exception e) {
-            showErrorDialog("Failed to start Hiking Game: " + e.getMessage());
-        }
-    }
-
-    private void initializeGame() {
-        ITileFactory tileFactory = new TileFactoryImpl();
-        IBoard board = new Board(6, 12, tileFactory);
-        new GameFrame(board);
-        SwingUtilities.invokeLater(this::dispose); // Dispose the LandingPage after GameFrame is initialized
+        GameContext context = GameContext.getInstance();
+        new GameFrame(context.getBoard(), context.getMazeGenerator());
+        dispose();
     }
 
     private void exitApplication() {
@@ -73,14 +61,10 @@ public class LandingPage extends JFrame {
                 "Info", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    private void showErrorDialog(String message) {
-        JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            LandingPage landingPage = new LandingPage();
+            landingPage.setVisible(true);
+        });
     }
-
-    // public static void main(String[] args) {
-    //     SwingUtilities.invokeLater(() -> {
-    //         LandingPage landingPage = new LandingPage();
-    //         landingPage.setVisible(true);
-    //     });
-    // }
 }

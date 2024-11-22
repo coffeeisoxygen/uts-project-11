@@ -9,9 +9,9 @@ import com.twentyforseven.model.factory.ITileFactory;
 import com.twentyforseven.model.interfaces.IBoard;
 import com.twentyforseven.model.interfaces.ITile;
 
-public class MazeGenerator implements MapCreationAlgorithm {
+public class MazeGenerator implements IMapCreationAlgorithm {
     private final Random random = new Random();
-    private ITileFactory tileFactory;
+    private final ITileFactory tileFactory;
 
     public MazeGenerator(ITileFactory tileFactory) {
         this.tileFactory = tileFactory;

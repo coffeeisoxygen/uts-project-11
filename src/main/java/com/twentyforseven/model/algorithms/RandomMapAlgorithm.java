@@ -2,7 +2,7 @@ package com.twentyforseven.model.algorithms;
 
 import com.twentyforseven.model.interfaces.IBoard;
 
-public class RandomMapAlgorithm implements MapCreationAlgorithm {
+public class RandomMapAlgorithm implements IMapCreationAlgorithm {
 
     @Override
     public void constructMap(IBoard board) {
