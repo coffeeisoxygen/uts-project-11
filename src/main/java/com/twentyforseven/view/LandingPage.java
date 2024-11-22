@@ -8,8 +8,10 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import com.twentyforseven.util.GameContext;
@@ -26,7 +28,7 @@ public class LandingPage extends JFrame {
         JPanel menuPanel = new JPanel();
         menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
 
-        String[] menuItems = {"Hiking Game", "Exit"};
+        String[] menuItems = { "Hiking Game", "Create Custom Map", "Exit" };
         for (String menuItem : menuItems) {
             JButton button = new JButton(menuItem);
             button.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -41,6 +43,7 @@ public class LandingPage extends JFrame {
     private void handleMenuClick(String menuItem) {
         switch (menuItem) {
             case "Hiking Game" -> startHikingGame();
+            case "Create Custom Map" -> createCustomMap();
             case "Exit" -> exitApplication();
             default -> showNotImplementedMessage(menuItem);
         }
@@ -50,6 +53,29 @@ public class LandingPage extends JFrame {
         GameContext context = GameContext.getInstance();
         new GameFrame(context.getBoard(), context.getMazeGenerator());
         dispose();
+    }
+
+    private void createCustomMap() {
+        JTextField rowsField = new JTextField(5);
+        JTextField colsField = new JTextField(5);
+
+        JPanel myPanel = new JPanel();
+        myPanel.add(new JLabel("Rows:"));
+        myPanel.add(rowsField);
+        myPanel.add(Box.createHorizontalStrut(15)); // a spacer
+        myPanel.add(new JLabel("Cols:"));
+        myPanel.add(colsField);
+
+        int result = JOptionPane.showConfirmDialog(null, myPanel,
+                "Please Enter Map Dimensions", JOptionPane.OK_CANCEL_OPTION);
+        if (result == JOptionPane.OK_OPTION) {
+            int rows = Integer.parseInt(rowsField.getText());
+            int cols = Integer.parseInt(colsField.getText());
+            GameContext context = GameContext.getInstance();
+            context.getBoardManager().createMap(rows, cols, context.getTileFactory());
+            new GameFrame(context.getBoard(), context.getMazeGenerator());
+            dispose();
+        }
     }
 
     private void exitApplication() {

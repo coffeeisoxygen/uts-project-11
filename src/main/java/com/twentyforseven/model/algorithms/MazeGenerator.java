@@ -17,6 +17,9 @@ public class MazeGenerator implements IMapCreationAlgorithm {
         this.tileFactory = tileFactory;
     }
 
+    /*
+     * TODO: Implement a maze generation algorithm that generates a maze with
+     */
     @Override
     public void constructMap(IBoard board) {
         int height = board.getHeight();
