@@ -2,6 +2,8 @@ package com.twentyforseven.model.classes.tile;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -9,28 +11,30 @@ import java.util.Objects;
 import com.twentyforseven.model.behaviors.ITileBehavior;
 import com.twentyforseven.model.classes.player.Player;
 import com.twentyforseven.model.enumerate.TileType;
+import com.twentyforseven.model.interfaces.PropertyChangeObservable;
 
-public abstract class Tile implements ITile {
+public abstract class Tile implements ITile, PropertyChangeObservable {
     private String name;
     private TileType type;
     private Color color;
     private ITileBehavior behavior;
     private Point position;
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
     private static final Map<TileType, Color> DEFAULT_COLORS = new HashMap<>();
 
     static {
         DEFAULT_COLORS.put(TileType.CHECKPOINT, Color.GREEN);
         DEFAULT_COLORS.put(TileType.STARTPOINT, Color.BLUE);
-        DEFAULT_COLORS.put(TileType.FINISHPOINT, Color.magenta);
+        DEFAULT_COLORS.put(TileType.FINISHPOINT, Color.MAGENTA);
         DEFAULT_COLORS.put(TileType.DANGERPOINT, Color.RED);
         DEFAULT_COLORS.put(TileType.NORMALPOINT, Color.WHITE);
     }
 
-    public Tile(TileType type, ITileBehavior behavior, Point position) {
+    protected Tile(TileType type, ITileBehavior behavior, Point position) {
         this(type, type != null ? type.toString() : TileType.NORMALPOINT.toString(), behavior, position);
     }
 
-    public Tile(TileType type, String name, ITileBehavior behavior, Point position) {
+    protected Tile(TileType type, String name, ITileBehavior behavior, Point position) {
         this.type = type != null ? type : TileType.NORMALPOINT;
         this.name = name != null ? name : this.type.toString();
         this.color = DEFAULT_COLORS.get(this.type);
@@ -116,5 +120,15 @@ public abstract class Tile implements ITile {
     @Override
     public void interact(Player player) {
         behavior.interact(player);
+    }
+
+    @Override
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        pcs.addPropertyChangeListener(listener);
+    }
+
+    @Override
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        pcs.removePropertyChangeListener(listener);
     }
 }

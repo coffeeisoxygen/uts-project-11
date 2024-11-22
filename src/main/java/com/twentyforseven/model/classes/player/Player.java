@@ -6,7 +6,9 @@ import java.beans.PropertyChangeSupport;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Player implements IPlayer {
+import com.twentyforseven.model.interfaces.PropertyChangeObservable;
+
+public class Player implements IPlayer , PropertyChangeObservable {
     private static final Logger logger = Logger.getLogger(Player.class.getName());
     private String name;
     private int score;
@@ -24,11 +26,11 @@ public class Player implements IPlayer {
         this.isAlive = true;
         this.hasWon = false;
     }
-
+    @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         pcs.addPropertyChangeListener(listener);
     }
-
+    @Override
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         pcs.removePropertyChangeListener(listener);
     }

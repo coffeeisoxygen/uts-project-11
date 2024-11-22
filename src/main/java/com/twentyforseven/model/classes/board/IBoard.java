@@ -1,7 +1,5 @@
 package com.twentyforseven.model.classes.board;
 
-import java.beans.PropertyChangeListener;
-
 import com.twentyforseven.model.classes.tile.ITile;
 
 public interface IBoard {
@@ -15,7 +13,4 @@ public interface IBoard {
 
     void printBoard();
 
-    void addPropertyChangeListener(PropertyChangeListener listener);
-
-    void removePropertyChangeListener(PropertyChangeListener listener);
 }

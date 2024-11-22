@@ -9,20 +9,20 @@ import java.util.logging.Logger;
 import com.twentyforseven.model.classes.tile.ITile;
 import com.twentyforseven.model.enumerate.TileType;
 import com.twentyforseven.model.factory.ITileFactory;
+import com.twentyforseven.model.interfaces.PropertyChangeObservable;
 
-public class Board implements IBoard {
+public class Board implements IBoard, PropertyChangeObservable {
     private static final Logger logger = Logger.getLogger(Board.class.getName());
     private static final int DEFAULT_ROWS = 6;
     private static final int DEFAULT_COLS = 12;
     private ITile[][] tiles;
     private ITileFactory tileFactory;
-    private PropertyChangeSupport support;
+    private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     // Constructor with parameters for rows, cols, and tileFactory
     public Board(int rows, int cols, ITileFactory tileFactory) {
         this.tiles = new ITile[rows][cols];
         this.tileFactory = tileFactory;
-        this.support = new PropertyChangeSupport(this);
         initializeBoard();
     }
 
