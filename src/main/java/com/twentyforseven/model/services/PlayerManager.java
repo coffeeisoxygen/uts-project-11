@@ -27,22 +27,22 @@ public class PlayerManager extends AbstractMoveable implements IPlayerManager {
 
     @Override
     public void movePlayerLeft() {
-        player.move(-1, 0);
+        player.move(-1, 0); // Move left
     }
 
     @Override
     public void movePlayerRight() {
-        player.move(1, 0);
+        player.move(1, 0); // Move right
     }
 
     @Override
     public void movePlayerUp() {
-        player.move(0, -1);
+        player.move(0, -1); // Move up
     }
 
     @Override
     public void movePlayerDown() {
-        player.move(0, 1);
+        player.move(0, 1); // Move down
     }
 
     @Override

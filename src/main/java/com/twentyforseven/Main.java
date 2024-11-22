@@ -1,22 +1,19 @@
-// package com.twentyforseven;
+package com.twentyforseven;
 
-// import java.util.logging.Logger;
+import com.twentyforseven.model.services.GameManager;
+import com.twentyforseven.util.GameContext;
 
-// import javax.swing.SwingUtilities;
+public class Main {
+    public static void main(String[] args) {
+        // Initialize the game context
+        GameContext context = GameContext.getInstance();
+        GameManager gameManager = context.getGameManager();
 
-// import com.twentyforseven.util.LoggerConfig;
-// import com.twentyforseven.view.LandingPage;
+        // Process user input commands
+        String commands = "lrurddddssss";
+        gameManager.startGame(commands);
 
-// public class Main {
-// private static final Logger logger = Logger.getLogger(Main.class.getName());
-
-// public static void main(String[] args) {
-// LoggerConfig.configureLogger();
-// logger.info("Starting application");
-
-// SwingUtilities.invokeLater(() -> {
-// LandingPage landingPage = new LandingPage();
-// landingPage.setVisible(true);
-// });
-// }
-// }
+        // Print the final state of the board
+        gameManager.getBoard().printBoard();
+    }
+}

@@ -9,9 +9,8 @@ import java.util.logging.Logger;
 import com.twentyforseven.model.classes.tile.ITile;
 import com.twentyforseven.model.enumerate.TileType;
 import com.twentyforseven.model.factory.ITileFactory;
-import com.twentyforseven.model.interfaces.PropertyChangeObservable;
 
-public class Board implements IBoard, PropertyChangeObservable {
+public class Board implements IBoard {
     private static final Logger logger = Logger.getLogger(Board.class.getName());
     private static final int DEFAULT_ROWS = 6;
     private static final int DEFAULT_COLS = 12;
@@ -39,7 +38,8 @@ public class Board implements IBoard, PropertyChangeObservable {
                 }
             }
             // Place start and finish tiles
-            tiles[tiles.length - 1][tiles[0].length - 1] = tileFactory.createTile(TileType.STARTPOINT, new Point(tiles.length - 1, tiles[0].length - 1));
+            tiles[tiles.length - 1][tiles[0].length - 1] = tileFactory.createTile(TileType.STARTPOINT,
+                    new Point(tiles.length - 1, tiles[0].length - 1));
             tiles[0][0] = tileFactory.createTile(TileType.FINISHPOINT, new Point(0, 0));
             logger.info("Board initialized successfully.");
         } catch (Exception e) {

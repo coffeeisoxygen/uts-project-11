@@ -6,4 +6,5 @@ public interface PropertyChangeObservable {
     void addPropertyChangeListener(PropertyChangeListener listener);
 
     void removePropertyChangeListener(PropertyChangeListener listener);
+
 }

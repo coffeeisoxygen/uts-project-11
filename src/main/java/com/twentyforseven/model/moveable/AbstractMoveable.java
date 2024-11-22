@@ -4,7 +4,7 @@ import java.awt.Point;
 
 public abstract class AbstractMoveable implements IMoveable {
 
-    public AbstractMoveable(Point startPosition) {
+    protected AbstractMoveable(Point startPosition) {
         // Constructor can be kept for potential future use
     }
 
