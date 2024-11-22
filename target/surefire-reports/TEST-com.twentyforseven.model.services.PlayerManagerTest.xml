@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.twentyforseven.model.classes.PlayerTest" time="0.042" tests="9" errors="0" skipped="0" failures="1">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.twentyforseven.model.services.PlayerManagerTest" time="0.02" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="23"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -16,9 +16,9 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="F:\packages\java\OpenJDK-23\bin"/>
-    <property name="sun.java.command" value="C:\Users\YOGA\AppData\Local\Temp\surefire3406124438978596813\surefirebooter15746487366705805760.jar C:\Users\YOGA\AppData\Local\Temp\surefire3406124438978596813 2024-11-22T21-41-22_510-jvmRun1 surefire2351358831301630185tmp surefire_012449201994096603959tmp"/>
+    <property name="sun.java.command" value="C:\Users\YOGA\AppData\Local\Temp\surefire1413289091386156470\surefirebooter9063685962171032125.jar C:\Users\YOGA\AppData\Local\Temp\surefire1413289091386156470 2024-11-22T21-50-44_123-jvmRun1 surefire5507568244844055346tmp surefire_014669563066252812361tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="test" value="com.twentyforseven.model.classes.PlayerTest"/>
+    <property name="test" value="com.twentyforseven.model.services.PlayerManagerTest#testMovePlayerRight"/>
     <property name="surefire.test.class.path" value="F:\uts_project11\arraygame\target\test-classes;F:\uts_project11\arraygame\target\classes;C:\Users\YOGA\.m2\repository\org\junit\jupiter\junit-jupiter\5.7.0\junit-jupiter-5.7.0.jar;C:\Users\YOGA\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.7.0\junit-jupiter-api-5.7.0.jar;C:\Users\YOGA\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\YOGA\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\YOGA\.m2\repository\org\junit\platform\junit-platform-commons\1.7.0\junit-platform-commons-1.7.0.jar;C:\Users\YOGA\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.7.0\junit-jupiter-params-5.7.0.jar;C:\Users\YOGA\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.7.0\junit-jupiter-engine-5.7.0.jar;C:\Users\YOGA\.m2\repository\org\junit\platform\junit-platform-engine\1.7.0\junit-platform-engine-1.7.0.jar;C:\Users\YOGA\.m2\repository\org\mockito\mockito-core\3.9.0\mockito-core-3.9.0.jar;C:\Users\YOGA\.m2\repository\net\bytebuddy\byte-buddy\1.10.20\byte-buddy-1.10.20.jar;C:\Users\YOGA\.m2\repository\net\bytebuddy\byte-buddy-agent\1.10.20\byte-buddy-agent-1.10.20.jar;C:\Users\YOGA\.m2\repository\org\objenesis\objenesis\3.2\objenesis-3.2.jar;C:\Users\YOGA\.m2\repository\org\assertj\assertj-core\3.19.0\assertj-core-3.19.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\YOGA"/>
@@ -32,7 +32,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\YOGA\AppData\Local\Temp\surefire3406124438978596813\surefirebooter15746487366705805760.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\YOGA\AppData\Local\Temp\surefire1413289091386156470\surefirebooter9063685962171032125.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="23+37-2369"/>
@@ -61,17 +61,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="testGetPosition" classname="com.twentyforseven.model.classes.PlayerTest" time="0.013"/>
-  <testcase name="testGetScore" classname="com.twentyforseven.model.classes.PlayerTest" time="0"/>
-  <testcase name="testMove" classname="com.twentyforseven.model.classes.PlayerTest" time="0"/>
-  <testcase name="testToString" classname="com.twentyforseven.model.classes.PlayerTest" time="0.018">
-    <failure message="expected: &lt;Player{name=&apos;John&apos;, score=100, position=java.awt.Point[x=0,y=0]}&gt; but was: &lt;Player{name=&apos;John&apos;, score=100, position=java.awt.Point[x=0,y=0], energy=100, isAlive=true, hasWon=false}&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <Player{name='John', score=100, position=java.awt.Point[x=0,y=0]}> but was: <Player{name='John', score=100, position=java.awt.Point[x=0,y=0], energy=100, isAlive=true, hasWon=false}>
-	at com.twentyforseven.model.classes.PlayerTest.testToString(PlayerTest.java:78)
-]]></failure>
-  </testcase>
-  <testcase name="testGetName" classname="com.twentyforseven.model.classes.PlayerTest" time="0.001"/>
-  <testcase name="testPlayerConstructor" classname="com.twentyforseven.model.classes.PlayerTest" time="0"/>
-  <testcase name="testSetName" classname="com.twentyforseven.model.classes.PlayerTest" time="0"/>
-  <testcase name="testSetPosition" classname="com.twentyforseven.model.classes.PlayerTest" time="0.001"/>
-  <testcase name="testSetScore" classname="com.twentyforseven.model.classes.PlayerTest" time="0"/>
+  <testcase name="testMovePlayerRight" classname="com.twentyforseven.model.services.PlayerManagerTest" time="0.014"/>
 </testsuite>

@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
 
-package com.twentyforseven.model.classes.player;
+package com.twentyforseven.model.interfaces;
 
 import java.awt.Point;
 

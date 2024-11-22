@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.twentyforseven.model.classes.PlayerTest
 -------------------------------------------------------------------------------
-Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.032 s - in com.twentyforseven.model.classes.PlayerTest
+Tests run: 9, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.042 s <<< FAILURE! - in com.twentyforseven.model.classes.PlayerTest
+testToString  Time elapsed: 0.018 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <Player{name='John', score=100, position=java.awt.Point[x=0,y=0]}> but was: <Player{name='John', score=100, position=java.awt.Point[x=0,y=0], energy=100, isAlive=true, hasWon=false}>
+	at com.twentyforseven.model.classes.PlayerTest.testToString(PlayerTest.java:78)
+
