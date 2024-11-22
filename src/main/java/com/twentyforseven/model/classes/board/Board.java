@@ -6,10 +6,9 @@ import java.beans.PropertyChangeSupport;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.twentyforseven.model.classes.tile.ITile;
 import com.twentyforseven.model.enumerate.TileType;
 import com.twentyforseven.model.factory.ITileFactory;
-import com.twentyforseven.model.interfaces.IBoard;
-import com.twentyforseven.model.interfaces.ITile;
 
 public class Board implements IBoard {
     private static final Logger logger = Logger.getLogger(Board.class.getName());

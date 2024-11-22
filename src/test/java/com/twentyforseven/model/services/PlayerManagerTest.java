@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.twentyforseven.model.interfaces.IPlayer;
+import com.twentyforseven.model.classes.player.IPlayer;
 
 public class PlayerManagerTest {
     private PlayerManager playerManager;

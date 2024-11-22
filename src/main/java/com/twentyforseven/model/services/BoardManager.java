@@ -8,11 +8,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import com.twentyforseven.model.classes.board.Board;
+import com.twentyforseven.model.classes.board.IBoard;
+import com.twentyforseven.model.classes.tile.ITile;
 import com.twentyforseven.model.enumerate.TileType;
 import com.twentyforseven.model.factory.ITileFactory;
-import com.twentyforseven.model.interfaces.IBoard;
 import com.twentyforseven.model.interfaces.IBoardManager;
-import com.twentyforseven.model.interfaces.ITile;
 
 public class BoardManager implements IBoardManager {
     private IBoard board;

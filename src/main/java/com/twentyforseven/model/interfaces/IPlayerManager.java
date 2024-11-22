@@ -2,6 +2,8 @@ package com.twentyforseven.model.interfaces;
 
 import java.awt.Point;
 
+import com.twentyforseven.model.classes.player.IPlayer;
+
 public interface IPlayerManager {
     void createPlayer(String name, int score, Point startPosition);
 

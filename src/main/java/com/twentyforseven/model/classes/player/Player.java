@@ -2,8 +2,6 @@ package com.twentyforseven.model.classes.player;
 
 import java.awt.Point;
 
-import com.twentyforseven.model.interfaces.IPlayer;
-
 public class Player implements IPlayer {
     private String name;
     private int score;

@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.twentyforseven.model.classes.tile.ITile;
 import com.twentyforseven.model.classes.tile.Tile;
 import com.twentyforseven.model.classes.tile.TileCheckPoint;
 import com.twentyforseven.model.classes.tile.TileDangerPoint;
@@ -11,7 +12,6 @@ import com.twentyforseven.model.classes.tile.TileFinishPoint;
 import com.twentyforseven.model.classes.tile.TileNormalPoint;
 import com.twentyforseven.model.classes.tile.TileStartPoint;
 import com.twentyforseven.model.enumerate.TileType;
-import com.twentyforseven.model.interfaces.ITile;
 
 public class TileFactoryImpl implements ITileFactory {
     private static final Map<String, Tile> tileMap = new ConcurrentHashMap<>();

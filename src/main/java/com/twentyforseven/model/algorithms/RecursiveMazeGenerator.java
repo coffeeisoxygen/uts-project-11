@@ -4,10 +4,10 @@ import java.awt.Point;
 import java.util.Random;
 import java.util.Stack;
 
+import com.twentyforseven.model.classes.board.IBoard;
+import com.twentyforseven.model.classes.tile.ITile;
 import com.twentyforseven.model.enumerate.TileType;
 import com.twentyforseven.model.factory.ITileFactory;
-import com.twentyforseven.model.interfaces.IBoard;
-import com.twentyforseven.model.interfaces.ITile;
 
 public class RecursiveMazeGenerator implements IMapRandomAlgo {
     private final Random random = new Random();

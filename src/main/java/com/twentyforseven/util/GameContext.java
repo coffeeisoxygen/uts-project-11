@@ -3,9 +3,9 @@ package com.twentyforseven.util;
 import com.twentyforseven.model.algorithms.IMapRandomAlgo;
 import com.twentyforseven.model.algorithms.RecursiveMazeGenerator;
 import com.twentyforseven.model.classes.board.Board;
+import com.twentyforseven.model.classes.board.IBoard;
 import com.twentyforseven.model.factory.ITileFactory;
 import com.twentyforseven.model.factory.TileFactoryImpl;
-import com.twentyforseven.model.interfaces.IBoard;
 import com.twentyforseven.model.interfaces.IBoardManager;
 import com.twentyforseven.model.services.BoardManager;
 

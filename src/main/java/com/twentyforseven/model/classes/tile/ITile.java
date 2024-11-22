@@ -1,4 +1,4 @@
-package com.twentyforseven.model.interfaces;
+package com.twentyforseven.model.classes.tile;
 
 import java.awt.Color;
 import java.awt.Point;

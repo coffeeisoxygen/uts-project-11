@@ -9,7 +9,6 @@ import java.util.Objects;
 import com.twentyforseven.model.behaviors.ITileBehavior;
 import com.twentyforseven.model.classes.player.Player;
 import com.twentyforseven.model.enumerate.TileType;
-import com.twentyforseven.model.interfaces.ITile;
 
 public abstract class Tile implements ITile {
     private String name;

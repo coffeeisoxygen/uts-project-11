@@ -1,6 +1,8 @@
-package com.twentyforseven.model.interfaces;
+package com.twentyforseven.model.classes.board;
 
 import java.beans.PropertyChangeListener;
+
+import com.twentyforseven.model.classes.tile.ITile;
 
 public interface IBoard {
     ITile getTile(int row, int col);

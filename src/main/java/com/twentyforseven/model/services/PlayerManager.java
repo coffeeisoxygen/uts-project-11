@@ -2,8 +2,8 @@ package com.twentyforseven.model.services;
 
 import java.awt.Point;
 
+import com.twentyforseven.model.classes.player.IPlayer;
 import com.twentyforseven.model.classes.player.Player;
-import com.twentyforseven.model.interfaces.IPlayer;
 import com.twentyforseven.model.interfaces.IPlayerManager;
 import com.twentyforseven.model.moveable.AbstractMoveable;
 
