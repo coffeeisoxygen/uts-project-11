@@ -1,17 +1,28 @@
 package com.twentyforseven;
 
-import com.twentyforseven.model.classes.Board;
+import com.twentyforseven.model.commands.LoadMapCommand;
+import com.twentyforseven.model.commands.SaveMapCommand;
 import com.twentyforseven.model.factory.ITileFactory;
 import com.twentyforseven.model.factory.TileFactoryImpl;
-import com.twentyforseven.model.interfaces.IBoard;
+import com.twentyforseven.model.interfaces.IBoardManager;
+import com.twentyforseven.model.services.BoardManager;
 
 public class Main {
     public static void main(String[] args) {
         ITileFactory tileFactory = new TileFactoryImpl();
-        IBoard board = new Board(6, 12, tileFactory);
-        board.printBoard();
+        IBoardManager boardManager = new BoardManager();
 
-        // Example: Get a tile from the board
-        System.out.println(board.getTile(0, 0));
+        // Create a new map
+        boardManager.createMap(6, 12, tileFactory);
+        boardManager.printBoard();
+
+        // Save the map
+        SaveMapCommand saveCommand = new SaveMapCommand(boardManager, "map.dat");
+        saveCommand.execute();
+
+        // Load the map
+        LoadMapCommand loadCommand = new LoadMapCommand(boardManager, "map.dat");
+        loadCommand.execute();
+        boardManager.printBoard();
     }
 }

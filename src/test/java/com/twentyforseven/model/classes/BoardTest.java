@@ -5,6 +5,8 @@ import static org.mockito.Mockito.*;
 import java.awt.Point;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import com.twentyforseven.model.classes.board.Board;
 import com.twentyforseven.model.enumerate.TileType;
 import com.twentyforseven.model.factory.ITileFactory;
 import com.twentyforseven.model.interfaces.ITile;
