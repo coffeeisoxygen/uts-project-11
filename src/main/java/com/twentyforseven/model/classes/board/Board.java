@@ -13,10 +13,13 @@ import com.twentyforseven.model.interfaces.ITile;
 
 public class Board implements IBoard {
     private static final Logger logger = Logger.getLogger(Board.class.getName());
+    private static final int DEFAULT_ROWS = 6;
+    private static final int DEFAULT_COLS = 12;
     private ITile[][] tiles;
     private ITileFactory tileFactory;
     private PropertyChangeSupport support;
 
+    // Constructor with parameters for rows, cols, and tileFactory
     public Board(int rows, int cols, ITileFactory tileFactory) {
         this.tiles = new ITile[rows][cols];
         this.tileFactory = tileFactory;
@@ -24,11 +27,24 @@ public class Board implements IBoard {
         initializeBoard();
     }
 
+    // Constructor without parameters, using default rows and cols
+    public Board(ITileFactory tileFactory) {
+        this(DEFAULT_ROWS, DEFAULT_COLS, tileFactory);
+    }
+
     private void initializeBoard() {
         try {
             for (int i = 0; i < tiles.length; i++) {
                 for (int j = 0; j < tiles[i].length; j++) {
                     tiles[i][j] = tileFactory.createTile(TileType.NORMALPOINT, new Point(i, j));
+                    // place tile start at last row and last column
+                    if (i == tiles.length - 1 && j == tiles[i].length - 1) {
+                        tiles[i][j] = tileFactory.createTile(TileType.STARTPOINT, new Point(i, j));
+                    }
+                    // place tile finish at first row and first column
+                    if (i == 0 && j == 0) {
+                        tiles[i][j] = tileFactory.createTile(TileType.FINISHPOINT, new Point(i, j));
+                    }
                 }
             }
             logger.info("Board initialized successfully.");

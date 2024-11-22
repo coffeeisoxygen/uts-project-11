@@ -9,11 +9,11 @@ import com.twentyforseven.model.factory.ITileFactory;
 import com.twentyforseven.model.interfaces.IBoard;
 import com.twentyforseven.model.interfaces.ITile;
 
-public class MazeGenerator implements IMapCreationAlgorithm {
+public class RecursiveMazeGenerator implements IMapRandomAlgo {
     private final Random random = new Random();
     private final ITileFactory tileFactory;
 
-    public MazeGenerator(ITileFactory tileFactory) {
+    public RecursiveMazeGenerator(ITileFactory tileFactory) {
         this.tileFactory = tileFactory;
     }
 
