@@ -21,7 +21,7 @@ public class CommandHandler implements ICommandHandler {
     public void processCommands(String commands) {
         for (char command : commands.toLowerCase().toCharArray()) {
             switch (command) {
-                case 'l' -> player.move(-1, 0); // Move left
+                case 'l' -> player.move(0, -1); // Move left
                 case 'r' -> player.move(0, 1); // Move right
                 case 'u' -> player.move(-1, -0); // Move up
                 case 'd' -> player.move(1, 0); // Move down
