@@ -78,9 +78,9 @@ public class Board implements IBoard {
     public void printBoard() {
         for (ITile[] tile : tiles) {
             for (ITile tile1 : tile) {
-                System.out.print(tile1.getType().toString().charAt(0) + " ");
+                logger.log(Level.INFO, "{0} ", tile1.getType().toString().charAt(0));
             }
-            System.out.println();
+            logger.info("Printed board successfully.");
         }
     }
 
