@@ -36,16 +36,11 @@ public class Board implements IBoard, PropertyChangeObservable {
             for (int i = 0; i < tiles.length; i++) {
                 for (int j = 0; j < tiles[i].length; j++) {
                     tiles[i][j] = tileFactory.createTile(TileType.NORMALPOINT, new Point(i, j));
-                    // place tile start at last row and last column
-                    if (i == tiles.length - 1 && j == tiles[i].length - 1) {
-                        tiles[i][j] = tileFactory.createTile(TileType.STARTPOINT, new Point(i, j));
-                    }
-                    // place tile finish at first row and first column
-                    if (i == 0 && j == 0) {
-                        tiles[i][j] = tileFactory.createTile(TileType.FINISHPOINT, new Point(i, j));
-                    }
                 }
             }
+            // Place start and finish tiles
+            tiles[tiles.length - 1][tiles[0].length - 1] = tileFactory.createTile(TileType.STARTPOINT, new Point(tiles.length - 1, tiles[0].length - 1));
+            tiles[0][0] = tileFactory.createTile(TileType.FINISHPOINT, new Point(0, 0));
             logger.info("Board initialized successfully.");
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Failed to initialize the board: {0}", e.getMessage());
@@ -76,12 +71,13 @@ public class Board implements IBoard, PropertyChangeObservable {
 
     @Override
     public void printBoard() {
-        for (ITile[] tile : tiles) {
-            for (ITile tile1 : tile) {
-                logger.log(Level.INFO, "{0} ", tile1.getType().toString().charAt(0));
+        for (ITile[] row : tiles) {
+            for (ITile tile : row) {
+                System.out.print(tile.getType().toString().charAt(0) + " ");
             }
-            logger.info("Printed board successfully.");
+            System.out.println();
         }
+        logger.info("Printed board successfully.");
     }
 
     @Override
