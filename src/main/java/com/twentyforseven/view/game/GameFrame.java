@@ -14,7 +14,8 @@ import com.twentyforseven.model.commands.CommandHandler;
 public class GameFrame extends JFrame implements PropertyChangeListener {
     private GameManager gameManager;
     private JTextField commandInput;
-    private JTextArea boardDisplay;
+    private JPanel boardPanel;
+    private TilePanel[][] tilePanels;
 
     public GameFrame() {
         // Initialize the game context and game manager
@@ -28,8 +29,19 @@ public class GameFrame extends JFrame implements PropertyChangeListener {
         setLayout(new BorderLayout());
 
         commandInput = new JTextField();
-        boardDisplay = new JTextArea();
-        boardDisplay.setEditable(false);
+        boardPanel = new JPanel();
+        boardPanel.setLayout(new GridLayout(gameManager.getBoard().getHeight(), gameManager.getBoard().getWidth()));
+
+        // Initialize tile panels
+        tilePanels = new TilePanel[gameManager.getBoard().getHeight()][gameManager.getBoard().getWidth()];
+        for (int i = 0; i < gameManager.getBoard().getHeight(); i++) {
+            for (int j = 0; j < gameManager.getBoard().getWidth(); j++) {
+                ITile tile = gameManager.getBoard().getTile(i, j);
+                TilePanel tilePanel = new TilePanel(tile);
+                tilePanels[i][j] = tilePanel;
+                boardPanel.add(tilePanel);
+            }
+        }
 
         JButton startButton = new JButton("Start");
         startButton.addActionListener((ActionEvent e) -> {
@@ -44,7 +56,7 @@ public class GameFrame extends JFrame implements PropertyChangeListener {
         inputPanel.add(startButton, BorderLayout.EAST);
 
         add(inputPanel, BorderLayout.NORTH);
-        add(new JScrollPane(boardDisplay), BorderLayout.CENTER);
+        add(boardPanel, BorderLayout.CENTER);
 
         // Add property change listeners
         addPropertyChangeListeners();
@@ -60,24 +72,13 @@ public class GameFrame extends JFrame implements PropertyChangeListener {
     }
 
     private void updateBoardDisplay() {
-        StringBuilder sb = new StringBuilder();
         Point playerPosition = gameManager.getPlayer().getPosition();
 
         for (int i = 0; i < gameManager.getBoard().getHeight(); i++) {
             for (int j = 0; j < gameManager.getBoard().getWidth(); j++) {
-                if (playerPosition.x == i && playerPosition.y == j) {
-                    sb.append("P ");
-                } else {
-                    ITile tile = gameManager.getBoard().getTile(i, j);
-                    if (tile == null) {
-                        throw new IllegalStateException("Tile at position (" + i + ", " + j + ") is null");
-                    }
-                    sb.append(tile.getType().toString().charAt(0)).append(" ");
-                }
+                tilePanels[i][j].setHasPlayer(playerPosition.x == i && playerPosition.y == j);
             }
-            sb.append("\n");
         }
-        boardDisplay.setText(sb.toString());
     }
 
     @Override
