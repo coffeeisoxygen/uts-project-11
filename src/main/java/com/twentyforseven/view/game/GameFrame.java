@@ -23,6 +23,13 @@ import com.twentyforseven.model.interfaces.IBoard;
 import com.twentyforseven.model.interfaces.ITile;
 
 public class GameFrame extends JFrame implements PropertyChangeListener {
+    private static final int FRAME_WIDTH = 1000;
+    private static final int FRAME_HEIGHT = 700;
+    private static final Color CONTROL_PANEL_BG_COLOR = new Color(220, 240, 240);
+    private static final Color BUTTON_BG_COLOR = new Color(70, 130, 180);
+    private static final Color BUTTON_BORDER_COLOR = new Color(40, 90, 150);
+    private static final Color BOARD_PANEL_BG_COLOR = Color.WHITE;
+
     private IBoard board;
     private JPanel boardPanel;
 
@@ -30,6 +37,7 @@ public class GameFrame extends JFrame implements PropertyChangeListener {
         this.board = board;
         initializeUI();
         registerListeners();
+        setVisible(true);
     }
 
     private void registerListeners() {
@@ -38,14 +46,18 @@ public class GameFrame extends JFrame implements PropertyChangeListener {
 
     private void initializeUI() {
         setTitle("Hiking Game");
-        setSize(1000, 700);
+        setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // Kontrol Panel di Bagian Atas
+        add(createControlPanel(), BorderLayout.NORTH);
+        add(createBoardPanel(), BorderLayout.CENTER);
+    }
+
+    private JPanel createControlPanel() {
         JPanel controlPanel = new JPanel();
         controlPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 10));
-        controlPanel.setBackground(new Color(220, 240, 240)); // Warna pastel untuk background
+        controlPanel.setBackground(CONTROL_PANEL_BG_COLOR);
 
         JButton randomizeButton = new JButton("Randomize Map");
         JButton createMapButton = new JButton("Create Map");
@@ -62,22 +74,23 @@ public class GameFrame extends JFrame implements PropertyChangeListener {
         controlPanel.add(loadMapButton);
         controlPanel.add(startGameButton);
 
-        add(controlPanel, BorderLayout.NORTH);
+        return controlPanel;
+    }
 
-        // Grid Panel untuk Board
+    private JPanel createBoardPanel() {
         boardPanel = new JPanel(new GridLayout(board.getHeight(), board.getWidth()));
-        boardPanel.setBorder(new EmptyBorder(10, 10, 10, 10)); // Padding antar tile
-        boardPanel.setBackground(Color.WHITE); // Background grid
+        boardPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+        boardPanel.setBackground(BOARD_PANEL_BG_COLOR);
         updateBoard();
-        add(boardPanel, BorderLayout.CENTER);
+        return boardPanel;
     }
 
     private void styleControlButton(JButton button) {
         button.setFont(new Font("Arial", Font.BOLD, 14));
-        button.setBackground(new Color(70, 130, 180)); // Warna biru
-        button.setForeground(Color.WHITE); // Tulisan putih
+        button.setBackground(BUTTON_BG_COLOR);
+        button.setForeground(Color.WHITE);
         button.setFocusPainted(false);
-        button.setBorder(BorderFactory.createLineBorder(new Color(40, 90, 150), 2));
+        button.setBorder(BorderFactory.createLineBorder(BUTTON_BORDER_COLOR, 2));
         button.setPreferredSize(new Dimension(150, 40));
     }
 
@@ -109,8 +122,8 @@ public class GameFrame extends JFrame implements PropertyChangeListener {
         ITileFactory tileFactory = new TileFactoryImpl();
         IBoard board = new Board(6, 12, tileFactory);
         SwingUtilities.invokeLater(() -> {
-            GameFrame landingPage = new GameFrame(board);
-            landingPage.setVisible(true);
+            GameFrame gameFrame = new GameFrame(board);
+            gameFrame.setVisible(true);
         });
     }
 }
