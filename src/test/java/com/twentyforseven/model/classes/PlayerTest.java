@@ -5,6 +5,8 @@ import java.awt.Point;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
+import com.twentyforseven.model.classes.player.Player;
+
 
 
 public class PlayerTest {

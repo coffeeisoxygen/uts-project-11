@@ -11,6 +11,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 import com.twentyforseven.model.behaviors.ITileBehavior;
+import com.twentyforseven.model.classes.player.Player;
+import com.twentyforseven.model.classes.tile.Tile;
 import com.twentyforseven.model.enumerate.TileType;
 
 

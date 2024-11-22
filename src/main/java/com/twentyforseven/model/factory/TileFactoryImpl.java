@@ -4,12 +4,12 @@ import java.awt.Point;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.twentyforseven.model.classes.Tile;
-import com.twentyforseven.model.classes.TileCheckPoint;
-import com.twentyforseven.model.classes.TileDangerPoint;
-import com.twentyforseven.model.classes.TileFinishPoint;
-import com.twentyforseven.model.classes.TileNormalPoint;
-import com.twentyforseven.model.classes.TileStartPoint;
+import com.twentyforseven.model.classes.tile.Tile;
+import com.twentyforseven.model.classes.tile.TileCheckPoint;
+import com.twentyforseven.model.classes.tile.TileDangerPoint;
+import com.twentyforseven.model.classes.tile.TileFinishPoint;
+import com.twentyforseven.model.classes.tile.TileNormalPoint;
+import com.twentyforseven.model.classes.tile.TileStartPoint;
 import com.twentyforseven.model.enumerate.TileType;
 import com.twentyforseven.model.interfaces.ITile;
 

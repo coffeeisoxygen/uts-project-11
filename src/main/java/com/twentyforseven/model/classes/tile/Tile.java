@@ -1,4 +1,4 @@
-package com.twentyforseven.model.classes;
+package com.twentyforseven.model.classes.tile;
 
 import java.awt.Color;
 import java.awt.Point;
@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import com.twentyforseven.model.behaviors.ITileBehavior;
+import com.twentyforseven.model.classes.player.Player;
 import com.twentyforseven.model.enumerate.TileType;
 import com.twentyforseven.model.interfaces.ITile;
 

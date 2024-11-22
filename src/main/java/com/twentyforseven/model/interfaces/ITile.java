@@ -3,7 +3,7 @@ package com.twentyforseven.model.interfaces;
 import java.awt.Color;
 import java.awt.Point;
 
-import com.twentyforseven.model.classes.Player;
+import com.twentyforseven.model.classes.player.Player;
 import com.twentyforseven.model.enumerate.TileType;
 
 public interface ITile {

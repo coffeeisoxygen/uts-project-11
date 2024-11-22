@@ -1,4 +1,4 @@
-package com.twentyforseven.model.classes;
+package com.twentyforseven.model.classes.player;
 
 import java.awt.Point;
 

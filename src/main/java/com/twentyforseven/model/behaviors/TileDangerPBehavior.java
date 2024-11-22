@@ -2,7 +2,7 @@ package com.twentyforseven.model.behaviors;
 
 import java.util.Objects;
 
-import com.twentyforseven.model.classes.Player;
+import com.twentyforseven.model.classes.player.Player;
 
 public class TileDangerPBehavior implements ITileBehavior {
     @Override

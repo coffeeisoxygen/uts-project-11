@@ -1,4 +1,4 @@
-package com.twentyforseven.model.classes;
+package com.twentyforseven.model.classes.tile;
 
 import java.awt.Point;
 
