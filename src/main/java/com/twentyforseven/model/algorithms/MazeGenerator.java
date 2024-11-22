@@ -1,24 +1,32 @@
 package com.twentyforseven.model.algorithms;
 
-import com.twentyforseven.model.interfaces.IBoard;
-import com.twentyforseven.model.interfaces.ITile;
-import com.twentyforseven.model.enumerate.TileType;
-
+import java.awt.Point;
 import java.util.Random;
 import java.util.Stack;
 
-public class MazeMapAlgorithm implements MapCreationAlgorithm {
+import com.twentyforseven.model.enumerate.TileType;
+import com.twentyforseven.model.factory.ITileFactory;
+import com.twentyforseven.model.interfaces.IBoard;
+import com.twentyforseven.model.interfaces.ITile;
+
+public class MazeGenerator implements MapCreationAlgorithm {
     private final Random random = new Random();
+    private ITileFactory tileFactory;
+
+    public MazeGenerator(ITileFactory tileFactory) {
+        this.tileFactory = tileFactory;
+    }
 
     @Override
-    public void createMap(IBoard board) {
+    public void constructMap(IBoard board) {
         int height = board.getHeight();
         int width = board.getWidth();
 
         // Initialize all tiles to NORMALPOINT by default
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                board.setTile(i, j, TileType.NORMALPOINT);
+                ITile tile = tileFactory.createTile(TileType.NORMALPOINT, new Point(i, j));
+                board.setTile(i, j, tile);
             }
         }
 
@@ -40,7 +48,7 @@ public class MazeMapAlgorithm implements MapCreationAlgorithm {
     private void generateMaze(IBoard board, boolean[][] visited, int x, int y) {
         visited[x][y] = true;
 
-        int[][] directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+        int[][] directions = { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
         shuffleArray(directions); // Randomize direction order
 
         for (int[] dir : directions) {
@@ -49,7 +57,8 @@ public class MazeMapAlgorithm implements MapCreationAlgorithm {
 
             if (isValid(nx, ny, visited)) {
                 // Carve a path
-                board.setTile(x + dir[0], y + dir[1], TileType.NORMALPOINT);
+                ITile pathTile = tileFactory.createTile(TileType.NORMALPOINT, new Point(x + dir[0], y + dir[1]));
+                board.setTile(x + dir[0], y + dir[1], pathTile);
                 generateMaze(board, visited, nx, ny);
             }
         }
@@ -74,8 +83,9 @@ public class MazeMapAlgorithm implements MapCreationAlgorithm {
             x = random.nextInt(board.getHeight());
             y = random.nextInt(board.getWidth());
         } while (!board.getTile(x, y).getType().equals(TileType.NORMALPOINT));
-        board.setTile(x, y, type);
-        return new int[]{x, y};
+        ITile tile = tileFactory.createTile(type, new Point(x, y));
+        board.setTile(x, y, tile);
+        return new int[] { x, y };
     }
 
     private void addCheckpoints(IBoard board, int[] start, int[] finish) {
@@ -88,15 +98,16 @@ public class MazeMapAlgorithm implements MapCreationAlgorithm {
 
             // Add CHECKPOINT with probability
             if (random.nextDouble() < 0.2) {
-                board.setTile(x, y, TileType.CHECKPOINT);
+                ITile checkpointTile = tileFactory.createTile(TileType.CHECKPOINT, new Point(x, y));
+                board.setTile(x, y, checkpointTile);
             }
 
             // Push neighbors that are part of the valid path
-            for (int[] dir : new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}}) {
+            for (int[] dir : new int[][] { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } }) {
                 int nx = x + dir[0];
                 int ny = y + dir[1];
                 if (isWithinBounds(nx, ny, board) && board.getTile(nx, ny).getType().equals(TileType.NORMALPOINT)) {
-                    stack.push(new int[]{nx, ny});
+                    stack.push(new int[] { nx, ny });
                 }
             }
         }
@@ -107,7 +118,8 @@ public class MazeMapAlgorithm implements MapCreationAlgorithm {
             for (int j = 0; j < board.getWidth(); j++) {
                 ITile tile = board.getTile(i, j);
                 if (tile.getType().equals(TileType.NORMALPOINT) && random.nextDouble() < 0.1) {
-                    board.setTile(i, j, TileType.DANGERPOINT);
+                    ITile dangerTile = tileFactory.createTile(TileType.DANGERPOINT, new Point(i, j));
+                    board.setTile(i, j, dangerTile);
                 }
             }
         }

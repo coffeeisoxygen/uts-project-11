@@ -70,8 +70,6 @@ public abstract class Tile implements ITile {
         return name;
     }
 
-
-
     @Override
     public void setName(String name) {
         this.name = name != null ? name : this.type.toString();

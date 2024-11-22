@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
+import com.twentyforseven.model.algorithms.MazeGenerator;
 import com.twentyforseven.model.classes.board.Board;
 import com.twentyforseven.model.factory.ITileFactory;
 import com.twentyforseven.model.factory.TileFactoryImpl;
@@ -32,9 +33,12 @@ public class GameFrame extends JFrame implements PropertyChangeListener {
 
     private IBoard board;
     private JPanel boardPanel;
+    private MazeGenerator MazeGenerator;
 
     public GameFrame(IBoard board) {
         this.board = board;
+        ITileFactory tileFactory = new TileFactoryImpl();
+        this.MazeGenerator = new MazeGenerator(tileFactory);
         initializeUI();
         registerListeners();
         setVisible(true);
@@ -68,6 +72,11 @@ public class GameFrame extends JFrame implements PropertyChangeListener {
         styleControlButton(createMapButton);
         styleControlButton(loadMapButton);
         styleControlButton(startGameButton);
+
+        randomizeButton.addActionListener(e -> {
+            MazeGenerator.constructMap(board);
+            updateBoard();
+        });
 
         controlPanel.add(randomizeButton);
         controlPanel.add(createMapButton);
