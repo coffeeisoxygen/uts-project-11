@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Point;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -20,7 +20,7 @@ public abstract class Tile implements ITile, PropertyChangeObservable {
     private ITileBehavior behavior;
     private Point position;
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
-    private static final Map<TileType, Color> DEFAULT_COLORS = new HashMap<>();
+    private static final Map<TileType, Color> DEFAULT_COLORS = new EnumMap<>(TileType.class);
 
     static {
         DEFAULT_COLORS.put(TileType.CHECKPOINT, Color.GREEN);
