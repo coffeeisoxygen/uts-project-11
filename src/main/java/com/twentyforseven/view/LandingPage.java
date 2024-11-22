@@ -1,71 +1,82 @@
 package com.twentyforseven.view;
 
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 import com.twentyforseven.model.classes.board.Board;
 import com.twentyforseven.model.factory.ITileFactory;
 import com.twentyforseven.model.factory.TileFactoryImpl;
 import com.twentyforseven.model.interfaces.IBoard;
-import com.twentyforseven.model.interfaces.ITile;
-
-public class LandingPage extends JFrame implements PropertyChangeListener {
-    private IBoard board;
-    private JPanel boardPanel;
-
-    public LandingPage(IBoard board) {
-        this.board = board;
-        initializeUI();
-        registerListeners();
-    }
-
-    private void registerListeners() {
-        this.board.addPropertyChangeListener(this);
-    }
-
-    private void initializeUI() {
-        setTitle("Board Game");
-        setSize(800, 600);
+import com.twentyforseven.view.game.GameFrame;
+public class LandingPage extends JFrame {
+    public LandingPage() {
+        setTitle("Project Coffee Is Oxygen");
+        setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        boardPanel = new JPanel(new GridLayout(board.getHeight(), board.getWidth()));
-        updateBoard();
-        add(boardPanel, BorderLayout.CENTER);
-    }
+        // Placeholder Gambar di Kiri
+        JLabel imagePlaceholder = new JLabel("Gambar Placeholder", SwingConstants.CENTER);
+        imagePlaceholder.setPreferredSize(new Dimension(200, 0));
+        imagePlaceholder.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        add(imagePlaceholder, BorderLayout.WEST);
 
-    private void updateBoard() {
-        boardPanel.removeAll();
-        for (int i = 0; i < board.getHeight(); i++) {
-            for (int j = 0; j < board.getWidth(); j++) {
-                ITile tile = board.getTile(i, j);
-                JButton tileButton = new JButton(tile.getType().toString().charAt(0) + "");
-                boardPanel.add(tileButton);
-            }
+        // Menu di Kanan
+        JPanel menuPanel = new JPanel();
+        menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
+
+        // Tombol-tombol Menu
+        String[] menuItems = {
+            "Hiking Game",
+            "Array Visualize",
+            "Algorithm Visualize",
+            "Queue Visualize",
+            "Stack Visualize",
+            "Exit"
+        };
+
+        for (String item : menuItems) {
+            JButton button = new JButton(item);
+            button.setAlignmentX(Component.CENTER_ALIGNMENT);
+            button.addActionListener((ActionEvent e) -> handleMenuClick(item));
+            menuPanel.add(button);
+            menuPanel.add(Box.createRigidArea(new Dimension(0, 10))); // Spacer
         }
-        boardPanel.revalidate();
-        boardPanel.repaint();
+
+        add(menuPanel, BorderLayout.CENTER);
     }
 
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        if ("tile".equals(evt.getPropertyName())) {
-            updateBoard();
+    private void handleMenuClick(String menuItem) {
+        switch (menuItem) {
+            case "Hiking Game" -> {
+                ITileFactory tileFactory = new TileFactoryImpl();
+                IBoard board = new Board(6, 12, tileFactory);
+                new GameFrame(board);
+                dispose();
+            }
+            case "Exit" -> System.exit(0);
+            default -> JOptionPane.showMessageDialog(this, menuItem + " belum diimplementasi.", 
+                    "Info", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
     public static void main(String[] args) {
-        ITileFactory tileFactory = new TileFactoryImpl();
-        IBoard board = new Board(6, 12, tileFactory);
         SwingUtilities.invokeLater(() -> {
-            LandingPage landingPage = new LandingPage(board);
+            LandingPage landingPage = new LandingPage();
             landingPage.setVisible(true);
         });
     }
