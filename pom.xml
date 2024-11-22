@@ -6,7 +6,7 @@
 
   <groupId>com.twentyforseven</groupId>
   <artifactId>arraygame</artifactId>
-  <version>11.0-PROJECTOOP UTS SEMESTER 1</version>
+  <version>1.0-SNAPSHOT</version>
 
   <name>arraygame</name>
   <url>http://www.example.com</url>
@@ -84,5 +84,26 @@
         </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>3.1.2</version>
+        <configuration>
+          <configLocation>checkstyle.xml</configLocation>
+          <encoding>UTF-8</encoding>
+          <consoleOutput>true</consoleOutput>
+          <failsOnError>true</failsOnError>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>validate</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
 </project>
