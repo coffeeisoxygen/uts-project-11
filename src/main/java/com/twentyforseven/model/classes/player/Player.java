@@ -110,21 +110,28 @@ public class Player implements IPlayer, PropertyChangeObservable {
 
     @Override
     public boolean isAlive() {
+        pcs.firePropertyChange("isAlive", isAlive, isAlive);
+        logger.info("Checking if player is alive.");
         return isAlive;
     }
 
     @Override
     public boolean hasWon() {
+        pcs.firePropertyChange("hasWon", hasWon, hasWon);
+        logger.info("Checking if player has won.");
         return hasWon;
     }
 
     @Override
     public int getEnergy() {
+        pcs.firePropertyChange("energy", energy, energy);
+        logger.info("Getting player's energy.");
         return energy;
     }
 
     @Override
     public void stay() {
+        pcs.firePropertyChange("position", position, position);
         logger.info("Player is staying on the tile.");
     }
 

@@ -9,8 +9,9 @@ import java.util.logging.Logger;
 import com.twentyforseven.model.classes.tile.ITile;
 import com.twentyforseven.model.enumerate.TileType;
 import com.twentyforseven.model.factory.ITileFactory;
+import com.twentyforseven.model.interfaces.PropertyChangeObservable;
 
-public class Board implements IBoard {
+public class Board implements IBoard, PropertyChangeObservable {
     private static final Logger logger = Logger.getLogger(Board.class.getName());
     private static final int DEFAULT_ROWS = 6;
     private static final int DEFAULT_COLS = 12;
@@ -67,17 +68,6 @@ public class Board implements IBoard {
     @Override
     public Integer getHeight() {
         return tiles.length;
-    }
-
-    @Override
-    public void printBoard() {
-        for (ITile[] row : tiles) {
-            for (ITile tile : row) {
-                System.out.print(tile.getType().toString().charAt(0) + " ");
-            }
-            System.out.println();
-        }
-        logger.info("Printed board successfully.");
     }
 
     @Override

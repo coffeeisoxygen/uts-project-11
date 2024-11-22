@@ -18,7 +18,6 @@ public class GameManager {
 
     public void startGame(String commands) {
         commandHandler.processCommands(commands);
-        board.printBoard();
     }
 
     public Player getPlayer() {

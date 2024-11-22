@@ -8,13 +8,11 @@ package com.twentyforseven.model.classes.player;
 import java.awt.Point;
 import java.beans.PropertyChangeListener;
 
-import com.twentyforseven.model.interfaces.PropertyChangeObservable;
-
 /**
  *
  * @author YOGA
  */
-public interface IPlayer extends PropertyChangeObservable{
+public interface IPlayer {
 
     String getName();
 
@@ -46,7 +44,7 @@ public interface IPlayer extends PropertyChangeObservable{
 
     @Override
     String toString();
-    @Override
+
     void addPropertyChangeListener(PropertyChangeListener listener);
 
 }

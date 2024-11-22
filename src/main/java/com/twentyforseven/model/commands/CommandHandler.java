@@ -6,8 +6,9 @@ import java.beans.PropertyChangeSupport;
 
 import com.twentyforseven.model.classes.board.IBoard;
 import com.twentyforseven.model.classes.player.Player;
+import com.twentyforseven.model.interfaces.PropertyChangeObservable;
 
-public class CommandHandler implements ICommandHandler {
+public class CommandHandler implements ICommandHandler ,PropertyChangeObservable{
     private Player player;
     private IBoard board;
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
@@ -36,7 +37,7 @@ public class CommandHandler implements ICommandHandler {
             }
         }
     }
-
+    @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         pcs.addPropertyChangeListener(listener);
     }

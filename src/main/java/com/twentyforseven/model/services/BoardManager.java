@@ -40,7 +40,7 @@ public class BoardManager implements IBoardManager {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
             oos.writeObject(board);
         } catch (IOException e) {
-            e.printStackTrace();
+            // TODO: Handle exception
         }
     }
 
@@ -49,12 +49,8 @@ public class BoardManager implements IBoardManager {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName))) {
             board = (IBoard) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            // TOFO: Handle exception
         }
     }
 
-    @Override
-    public void printBoard() {
-        board.printBoard();
-    }
 }

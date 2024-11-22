@@ -11,5 +11,4 @@ public interface IBoardManager {
     void loadTemplate(String templateName);
     void saveMap(String fileName);
     void loadMap(String fileName);
-    void printBoard();
 }

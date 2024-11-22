@@ -14,6 +14,5 @@ public class Main {
         gameManager.startGame(commands);
 
         // Print the final state of the board
-        gameManager.getBoard().printBoard();
     }
 }
