@@ -22,8 +22,8 @@ public abstract class Tile implements ITile {
     static {
         DEFAULT_COLORS.put(TileType.CHECKPOINT, Color.GREEN);
         DEFAULT_COLORS.put(TileType.STARTPOINT, Color.BLUE);
-        DEFAULT_COLORS.put(TileType.FINISHPOINT, Color.RED);
-        DEFAULT_COLORS.put(TileType.DANGERPOINT, Color.YELLOW);
+        DEFAULT_COLORS.put(TileType.FINISHPOINT, Color.magenta);
+        DEFAULT_COLORS.put(TileType.DANGERPOINT, Color.RED);
         DEFAULT_COLORS.put(TileType.NORMALPOINT, Color.WHITE);
     }
 
@@ -37,11 +37,18 @@ public abstract class Tile implements ITile {
         this.color = DEFAULT_COLORS.get(this.type);
         this.behavior = behavior;
         this.position = position;
+        this.color = DEFAULT_COLORS.getOrDefault(type, Color.GRAY);
     }
 
     @Override
     public TileType getType() {
         return type;
+    }
+
+    @Override
+    public void setType(TileType type) {
+        this.type = type != null ? type : TileType.NORMALPOINT;
+        this.color = DEFAULT_COLORS.get(this.type);
     }
 
     @Override
@@ -63,11 +70,7 @@ public abstract class Tile implements ITile {
         return name;
     }
 
-    @Override
-    public void setType(TileType type) {
-        this.type = type != null ? type : TileType.NORMALPOINT;
-        this.color = DEFAULT_COLORS.get(this.type);
-    }
+
 
     @Override
     public void setName(String name) {

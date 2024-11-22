@@ -47,7 +47,6 @@ public class Board implements IBoard {
         ITile oldTile = tiles[row][col];
         tiles[row][col] = tile;
         support.firePropertyChange("tile", oldTile, tile);
-        logger.log(Level.INFO, "Tile set at position ({0}, {1})", new Object[]{row, col});
     }
 
     @Override
@@ -62,9 +61,9 @@ public class Board implements IBoard {
 
     @Override
     public void printBoard() {
-        for (ITile[] row : tiles) {
-            for (ITile tile : row) {
-                System.out.print(tile.getType().toString().charAt(0) + " ");
+        for (ITile[] tile : tiles) {
+            for (ITile tile1 : tile) {
+                System.out.print(tile1.getType().toString().charAt(0) + " ");
             }
             System.out.println();
         }
