@@ -4,11 +4,11 @@ import java.util.Objects;
 
 import com.twentyforseven.model.classes.player.Player;
 
-public class TileFinishPBehavior implements ITileBehavior {
+public class BehaviorStartPoint implements ITileBehavior {
     @Override
     public void interact(Player player) {
-        // TODO: Implement this method
-        System.out.println("TileFinishBehaviors.interact(Player player) called");
+        System.out.println("Welcome to the game!");
+        System.out.println("TileStartPoint.interact(Player player) called");
     }
 
     @Override
@@ -21,6 +21,6 @@ public class TileFinishPBehavior implements ITileBehavior {
 
     @Override
     public int hashCode() {
-        return Objects.hash(TileNormalPBehavior.class);
+        return Objects.hash(BehaviorStartPoint.class);
     }
 }
