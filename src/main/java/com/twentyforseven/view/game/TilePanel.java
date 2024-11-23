@@ -1,9 +1,13 @@
 package com.twentyforseven.view.game;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import com.twentyforseven.model.classes.tile.ITile;
 
@@ -17,12 +21,26 @@ public class TilePanel extends JPanel {
 
     private ITile tile;
     private boolean hasPlayer;
+    private int x, y;
 
-    public TilePanel(ITile tile) {
+    public TilePanel(ITile tile, int x, int y) {
         this.tile = tile;
+        this.x = x;
+        this.y = y;
         this.hasPlayer = false;
+
         setBackground(getTileColor(tile));
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        setLayout(new BorderLayout());
+
+        JLabel infoLabel = new JLabel("<html>" +
+                "Name: " + tile.getName() + "<br>" +
+                "Type: " + tile.getType() + "<br>" +
+                "Pos: (" + x + ", " + y + ")" +
+                "</html>");
+        infoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        infoLabel.setFont(new Font("Arial", Font.PLAIN, 10));
+        add(infoLabel, BorderLayout.CENTER);
     }
 
     public void setHasPlayer(boolean hasPlayer) {

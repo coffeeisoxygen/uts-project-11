@@ -1,8 +1,9 @@
 package com.twentyforseven.model.algorithms;
 
 import java.awt.Point;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Random;
-import java.util.Stack;
 
 import com.twentyforseven.model.classes.board.IBoard;
 import com.twentyforseven.model.classes.tile.ITile;
@@ -17,15 +18,12 @@ public class RecursiveMazeGenerator implements IMapRandomAlgo {
         this.tileFactory = tileFactory;
     }
 
-    /*
-     * TODO: Implement a maze generation algorithm that generates a maze with
-     */
     @Override
     public void constructMap(IBoard board) {
         int height = board.getHeight();
         int width = board.getWidth();
 
-        // Initialize all tiles to NORMALPOINT by default
+        // Inisialisasi semua tiles menjadi NORMALPOINT
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 ITile tile = tileFactory.createTile(TileType.NORMALPOINT, new Point(i, j));
@@ -33,36 +31,49 @@ public class RecursiveMazeGenerator implements IMapRandomAlgo {
             }
         }
 
-        // Generate maze with Recursive Backtracking
+        // Generate maze menggunakan DFS iteratif
         boolean[][] visited = new boolean[height][width];
         generateMaze(board, visited, 0, 0);
 
-        // Place STARTPOINT and FINISHPOINT
+        // Tempatkan STARTPOINT dan FINISHPOINT
         int[] start = placeTile(board, TileType.STARTPOINT);
         int[] finish = placeTile(board, TileType.FINISHPOINT);
 
-        // Add CHECKPOINTS randomly along the valid path
+        // Tambahkan CHECKPOINTS secara random di jalur yang valid
         addCheckpoints(board, start, finish);
 
-        // Fill remaining tiles with DANGERPOINT randomly
+        // Isi tile sisanya dengan DANGERPOINT secara acak
         fillWithDangerTiles(board);
     }
 
-    private void generateMaze(IBoard board, boolean[][] visited, int x, int y) {
-        visited[x][y] = true;
+    private void generateMaze(IBoard board, boolean[][] visited, int startX, int startY) {
+        Deque<Point> stack = new ArrayDeque<>();
+        stack.push(new Point(startX, startY));
 
-        int[][] directions = { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
-        shuffleArray(directions); // Randomize direction order
+        while (!stack.isEmpty()) {
+            Point current = stack.pop();
+            int x = current.x;
+            int y = current.y;
 
-        for (int[] dir : directions) {
-            int nx = x + dir[0] * 2;
-            int ny = y + dir[1] * 2;
+            if (!visited[x][y]) {
+                visited[x][y] = true;
 
-            if (isValid(nx, ny, visited)) {
-                // Carve a path
-                ITile pathTile = tileFactory.createTile(TileType.NORMALPOINT, new Point(x + dir[0], y + dir[1]));
-                board.setTile(x + dir[0], y + dir[1], pathTile);
-                generateMaze(board, visited, nx, ny);
+                int[][] directions = { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
+                shuffleArray(directions); // Acak urutan arah
+
+                for (int[] dir : directions) {
+                    int nx = x + dir[0] * 2;
+                    int ny = y + dir[1] * 2;
+
+                    if (isValid(nx, ny, visited)) {
+                        // Buat jalur
+                        ITile pathTile = tileFactory.createTile(TileType.NORMALPOINT, new Point(x + dir[0], y + dir[1]));
+                        board.setTile(x + dir[0], y + dir[1], pathTile);
+
+                        // Tambahkan ke stack
+                        stack.push(new Point(nx, ny));
+                    }
+                }
             }
         }
     }
@@ -92,20 +103,21 @@ public class RecursiveMazeGenerator implements IMapRandomAlgo {
     }
 
     private void addCheckpoints(IBoard board, int[] start, int[] finish) {
-        Stack<int[]> stack = new Stack<>();
+        Deque<int[]> stack = new ArrayDeque<>();
         stack.push(start);
 
         while (!stack.isEmpty()) {
             int[] current = stack.pop();
-            int x = current[0], y = current[1];
+            int x = current[0];
+            int y = current[1];
 
-            // Add CHECKPOINT with probability
+            // Tambahkan CHECKPOINT dengan probabilitas
             if (random.nextDouble() < 0.2) {
                 ITile checkpointTile = tileFactory.createTile(TileType.CHECKPOINT, new Point(x, y));
                 board.setTile(x, y, checkpointTile);
             }
 
-            // Push neighbors that are part of the valid path
+            // Dorong tetangga yang merupakan bagian dari jalur valid
             for (int[] dir : new int[][] { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } }) {
                 int nx = x + dir[0];
                 int ny = y + dir[1];

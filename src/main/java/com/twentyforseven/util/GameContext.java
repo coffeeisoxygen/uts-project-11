@@ -3,7 +3,7 @@ package com.twentyforseven.util;
 import java.awt.Point;
 
 import com.twentyforseven.model.algorithms.IMapRandomAlgo;
-import com.twentyforseven.model.algorithms.RecursiveMazeGenerator;
+import com.twentyforseven.model.algorithms.SimpleMapMaze;
 import com.twentyforseven.model.classes.board.Board;
 import com.twentyforseven.model.classes.board.IBoard;
 import com.twentyforseven.model.classes.player.Player;
@@ -24,7 +24,7 @@ public class GameContext {
     private GameContext() {
         tileFactory = new TileFactoryImpl();
         board = new Board(tileFactory); // Use default dimensions
-        mazeGenerator = new RecursiveMazeGenerator(tileFactory);
+        mazeGenerator = new SimpleMapMaze(tileFactory);
         boardManager = new BoardManager();
         boardManager.createMap(6, 12, tileFactory); // Initialize the board manager with a default map
         Player player = new Player("Player1", 0, new Point(0, 0));
